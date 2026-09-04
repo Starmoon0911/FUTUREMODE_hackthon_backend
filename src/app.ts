@@ -7,7 +7,13 @@ const allowedOrigins = env.CORS_ORIGIN.split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
 
+// Vercel's Express auto-detection loads `src/app.ts` as the serverless
+// function entry, so the default export must be the configured Express app.
+// Without this, the runtime rejects the module with `Invalid export found in
+// module "/var/task/src/app.js"` and every request crashes with a 500
+// (FUNCTION_INVOCATION_FAILED) before the not-found middleware can run.
 export const app = express();
+export default app;
 
 app.disable("x-powered-by");
 app.use(
