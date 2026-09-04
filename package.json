@@ -14,7 +14,8 @@
     "start": "node dist/server.js",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prepare": "husky"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.99.1",
@@ -31,10 +32,17 @@
     "@types/supertest": "6.0.3",
     "eslint": "9.39.1",
     "globals": "16.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
     "supertest": "7.2.2",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
     "typescript-eslint": "8.48.0",
     "vitest": "4.0.16"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,mjs,cjs}": [
+      "eslint --max-warnings=0 --fix"
+    ]
   }
 }
