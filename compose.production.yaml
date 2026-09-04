@@ -1,0 +1,8 @@
+services:
+  api:
+    image: ${IMAGE:?Set IMAGE to the published container image}
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-3001}:3001"
+    restart: unless-stopped
